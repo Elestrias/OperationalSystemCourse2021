@@ -1,0 +1,16 @@
+  383  ls /usr/bin | grep *gcc* | sort -r > ex1.txt
+  384  ls /usr/bin | grep *Util* | sort -r > ex1.txt
+  385  ls /usr/bin | grep *Util | sort -r > ex1.txt
+  386  ls /usr/bin | grep *Util
+  387  ls /usr/bin
+  388  ls /usr/bin | grep -i  *Util* | sort -r > ex1.txt
+  389  ls /usr/bin | grep -i  *Util | sort -r > ex1.txt
+  390  ls /usr/bin | grep -i  | sort -r > ex1.txt
+  391  ls /usr/bin | grep -i  "*Util*" | sort -r > ex1.txt
+  392  cat ex1.txt
+  393  ls /usr/bin | grep -i  "*Util" | sort -r > ex1.txt
+  394  cat ex1.txt
+  395  nano ex1.txt
+  396  ls /usr/bin | grep -i  "Util" | sort -r > ex1.txt
+  397  ls /usr/bin | grep -i  "gcc" | sort -r > ex1.txt
+  398  cat ex1.txt
