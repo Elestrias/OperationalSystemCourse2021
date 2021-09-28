@@ -9,12 +9,15 @@ struct Proccess {
     int TAT;
     int CT;
     int WT;
+    int Change_BT;
 };
 
 int main() {
-    int x, at, bt, cur_time, ttat = 0, twt = 0;
+    int x, quant, at, bt, cur_time = 0, ttat = 0, twt = 0;
     printf("Enter number of proccesses:\n");
     scanf("%d", &x);
+    printf("Enter quantum:\n");
+    scanf("%d", &quant);
     struct Proccess *Initial_List[x];
     struct Proccess Sorted_List[x];
     int **a = (int **)malloc(sizeof(int *) * x);
@@ -29,30 +32,38 @@ int main() {
         new_proccess->id = i;
         new_proccess->AT = at;
         new_proccess->BT = bt;
+        new_proccess->Change_BT = bt;
         Initial_List[i] = new_proccess;
         Sorted_List[i] = *(new_proccess);
     }
     int p = 0;
     int minBT = INT_MAX;
+    int finished = 0;
     int * completed = (int *)malloc(sizeof(int)*x);
-    for (int i = 0; i < x; i++) {
-        p = i;
-        for(int j = 0; j < x; j++){
-            if(completed == 0 && Initial_List[i]->AT <= cur_time && Initial_List[i]->BT <=  minBT){
-                p = j;
-                minBT = Initial_List[i]->BT;
-            }
+    for(int i = 0; i < x; i ++){
+        completed[i] = 0;
+    }
+    int o = 0;
+    while(finished != x){
+        if(completed[o] == 1){
+            o = (o+1)%x;
         }
-        completed[p] = 1;
-        cur_time += Initial_List[p]->BT;
-        if (Initial_List[p]->AT > cur_time) {
-            cur_time = Initial_List[p]->AT;
+        if(Initial_List[o]->BT <= quant){
+            cur_time += Initial_List[o]->BT;
+            Initial_List[o]->CT = cur_time;
+
+            Initial_List[o]->TAT = Initial_List[o]->CT - Initial_List[o]->AT;
+            ttat += Initial_List[o]->TAT;
+            Initial_List[o]->WT = Initial_List[o]->TAT - Initial_List[o]->Change_BT;
+            twt += Initial_List[o]->WT;
+            completed[o] = 1;
+            finished++;
+            o = (o + 1)%x;
+        }else{
+            cur_time += quant;
+            Initial_List[o] -= quant;
+            o = (o+1)%x;
         }
-        Initial_List[p]->CT = cur_time;
-        Initial_List[p]->TAT = cur_time - Initial_List[p]->AT;
-        Initial_List[p]->WT = Initial_List[i]->TAT - Initial_List[p]->BT;
-        twt += Initial_List[p]->WT;
-        ttat += Initial_List[p]->TAT;
     }
 
     printf("#P\tAT\tBT\tCT\tTAT\tWT\n");
@@ -63,4 +74,5 @@ int main() {
     }
     printf("\nAverage turn around time = %f\nAverage waiting time = %f\n", (double)ttat / x, (double)twt / x);
 }
+
 
