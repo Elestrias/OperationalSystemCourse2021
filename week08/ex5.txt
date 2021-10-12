@@ -1,0 +1,7 @@
+Exercise 5:
+    What is the difference between a physical and a virtual address?
+Virtual addresses are not real, they make an illusion of full memory space access and used only by active processes,
+also virtual memory can be more than maximum device memory capacity(in that case data will be cashed on hard disk),
+with physical memory it cant apear as it already hard disks space.
+
+Physical addresses are real enough and represents the real structural cell of memory in hardware, used only by hardware system modules
