@@ -1,0 +1,3 @@
+For increasing hit number we can sort the references and expand frames amount to infinitely
+big number N so the first N references for sure will be in hit, which will increase the ration of hit/miss in general,
+moreover we can call existing pages in frames to fabricate bigger amount of hits
