@@ -6,6 +6,15 @@ struct Frame{
     int age;
     int page;
 };
+
+void moveAll(struct Frame* f, int n)
+{
+    for(int i = 0 ; i < n; ++i)
+    {
+        f[i].age >>= 1;
+    }
+}
+
 int main() {
     printf("Enter frames number:");
     int frame_num;
@@ -21,21 +30,16 @@ int main() {
     unsigned long long hit = 0, miss = 0;
     int min = 0;
     long long tact = 0, page = 0, prev_tact = 0;
-    while(scanf("%ld %ld", &tact, &page) == 1) {
 
-        if (prev_tact != 0 && prev_tact != tact) {
-            for (int j = 0; j < frame_num; j++) {
-                frames[j].age >> 1;
-            }
-        }
-        prev_tact = tact;
-
+    end:
+    while(scanf("%ld", &page) == 1) {
         for (int j = 0; j < frame_num; ++j)
         {
             if (frames[j].page == page)
             {
                 frames[j].age |= (1 << 7);
                 ++hit;
+                moveAll(frames, frame_num);
                 goto end;
             }
         }
@@ -44,30 +48,22 @@ int main() {
         int flag = 0;
         min = 0;
         for(int j  = 0; j < frame_num; j++){
-            if(min == 0){
                 if(frames[j].page == -1){
                     flag = 1;
                     min = j;
+                    break;
                 }
-            }else{
+
                 if(frames[j].age < frames[min].age){
                     min = j;
                 }
-            }
-        }
-        if (flag) {
-            while (i < frame_num) {
-                if (frames[i].age < frames[min].age) {
-                    min = i;
-                }
-                i++;
-            }
+
         }
         miss++;
         frames[min].age =  1 << 7;
-        frames[min].page = page
-        end:
-            printf("Hit: %ull\nMiss: %ull\nHit/Miss ratio: %f\n", hit, miss, (float)(hit / miss));
+        frames[min].page = page;
+        moveAll(frames, frame_num);
     }
+    printf("Hit: %llu\nMiss: %llu\nHit/Miss ratio: %f\n", hit, miss, (float)hit / miss);
     return 0;
 }
