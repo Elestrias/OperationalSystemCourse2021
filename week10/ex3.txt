@@ -1,0 +1,6 @@
+-rw-rw-r--  1 elestrias  staff   15 Oct 26 22:16 _ex3.txt
+-rwxrw-rwx  1 elestrias  staff   15 Oct 26 22:16 _ex3.txt
+-rwxrwxrwx  1 elestrias  staff   15 Oct 26 22:16 _ex3.txt
+660 = 110110000 = rw-rw---- = owner user can read and write, same for owner group and no permissions for other users
+775 = 111111101 = wxrwxr-x = owner user and owner group have all permissions, other users have permission to read and execute
+777 = 111111111 = rwxrwxrwx = owner user, owner group amd other users have all rights
