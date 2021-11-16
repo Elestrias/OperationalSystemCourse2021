@@ -1,0 +1,22 @@
+
+Deadlock avoidness is better when we do not care about following losses:
+• Future resource requirements must be known in advance
+• Processes can be blocked for long periods
+• Exists fixed number of resources for allocation
+Deadlock Prevention is better use when the following is not crucial for our implementation:
+•long waiting time required
+•inefficient use of allocated resource
+•A process may not know all the required resources in advance
+Deadlock recovery is better when we do care about the following constraints:
+ • This technique does not limit resources access or restrict process action.
+ • Requested resources are granted to processes whenever possible.
+ • It never delays the process initiation and facilitates online handling.
+ • The disadvantage is the inherent pre-emption losses.
+
+If we need good execution speed it is better to use
+Deadlock recovery as it spends a lot of time only if deadlock have appeared.
+
+If the save process termination  is required for us, deadlock avoidness becomes the best solution.
+With some speed losses and resource allocation limitations.
+
+If we want to decrease a probability of deadlock to 0, it is better to use deadlock prevention. However that approach has many limitations and make execution slower.
